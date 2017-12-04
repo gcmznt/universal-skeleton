@@ -2,13 +2,12 @@ import Link from "next/link";
 
 export default () => (
   <main>
-    <header>
-      <h1>Don't panic!</h1>
-    </header>
     <nav>
-      <Link href="/earth">
-        <a>Earth</a>
+      <Link href="/">
+        <a>Back</a>
       </Link>
     </nav>
+    <h1>Heart</h1>
+    <p>Mostly Harmless</p>
   </main>
 );
