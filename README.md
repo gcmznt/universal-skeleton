@@ -246,3 +246,39 @@ export default class MyDocument extends Document {
 ```
 
 a lot of examples here: https://github.com/zeit/next.js/tree/canary/examples
+
+## Step 6: Test components with Storybook
+
+```shell
+$ npm i --save-dev @storybook/react
+```
+
+Add script to `package.json`
+
+```json
+  "storybook": "start-storybook -p 9001 -c .storybook"
+```
+
+Create the configuration file `.storybook/config.js`
+
+```js
+import { configure } from "@storybook/react";
+
+configure(() => {
+  require("../stories/cover.js");
+}, module);
+```
+
+And create your stories like `stories/cover.js`
+
+```js
+import React from "react";
+import { storiesOf } from "@storybook/react";
+import Cover from "../components/Cover";
+
+storiesOf("Cover", module).add("normal", () => <Cover />);
+```
+
+```shell
+$ npm run storybook
+```
