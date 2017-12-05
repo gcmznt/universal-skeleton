@@ -4,7 +4,7 @@
 
 Install dependencies
 
-```
+```shell
 $ npm i -S next@latest react@latest react-dom@latest
 ```
 
@@ -20,13 +20,13 @@ Scripts in package.json
 
 Create the first page `pages/index.js`
 
-```javascript
+```js
 export default () => <div>Don't panic!</div>;
 ```
 
 Play
 
-```
+```shell
 $ npm run dev
 ```
 
@@ -35,19 +35,19 @@ $ npm run dev
 Create `my-page.js` in `/pages/` folder to add pages server under `/my-page`
 url.
 
-```javascript
+```js
 export default () => <div>My custom page.</div>;
 ```
 
 ## Step 3: Dynamic pages
 
-```
+```shell
 $ npm i express next-routes
 ```
 
 Create `routes` mapping
 
-```javascript
+```js
 const routes = require("next-routes")();
 
 routes.add("index", "/").add("race", "/race/:name");
@@ -57,7 +57,7 @@ module.exports = routes;
 
 Create a server (`src/server.js`) for our logic
 
-```javascript
+```js
 const express = require("express");
 const next = require("next");
 
@@ -75,7 +75,7 @@ app.prepare().then(() => {
 
 Use links from our router
 
-```javascript
+```js
 import { Link } from "../src/routes";
 <Link route="race" params={{ name: "Humans" }}>
   Humans
@@ -96,13 +96,13 @@ Change npm script
 
 ## Step 4: GraphQL
 
-```
+```shell
 $ npm i next-apollo
 ```
 
 Apollo config in `lib/apollo.js`
 
-```javascript
+```js
 import { withData } from "next-apollo";
 import { HttpLink } from "apollo-link-http";
 
@@ -117,7 +117,7 @@ export default withData(config);
 
 Create queries in `src/queries.js`
 
-```javascript
+```js
 import gql from "graphql-tag";
 
 export const race = gql`
@@ -136,14 +136,14 @@ export const allRaces = gql`...`;
 
 Add data to pages
 
-```javascript
+```js
 import withData from "../lib/apollo";
 export default withData(() => <main>...</main>);
 ```
 
 Use data in components
 
-```javascript
+```js
 import { Component } from "react";
 import { graphql } from "react-apollo";
 import { race as raceQuery } from "../src/queries";
@@ -167,4 +167,36 @@ And use components
 
 ```html
 <Race slug={props.url.query.name} />
+```
+
+## Step 5: Styles
+
+Default with `styled-jsx`
+
+```js
+export default () => (
+  <header>
+    <h1>
+      Don't<br />panic!
+    </h1>
+
+    <style jsx>{`
+      header {
+        background-color: #000;
+        text-align: center;
+        padding: 50px;
+      }
+      h1 {
+        color: #b90003;
+        font-family: "Arial black";
+        font-size: 120px;
+        font-weight: 900;
+        letter-spacing: -10px;
+        line-height: 0.9em;
+        text-transform: uppercase;
+        -webkit-text-stroke: 6px #e79705;
+      }
+    `}</style>
+  </header>
+);
 ```

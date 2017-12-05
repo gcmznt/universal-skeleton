@@ -1,12 +1,11 @@
 import { Link } from "../src/routes";
 import withData from "../lib/apollo";
+import Cover from "../components/Cover";
 import RaceList from "../components/RaceList";
 
 export default withData(() => (
   <main>
-    <header>
-      <h1>Don't panic!</h1>
-    </header>
+    <Cover />
     <nav>
       <h1>Index</h1>
       <h2>Planets</h2>
