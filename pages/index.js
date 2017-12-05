@@ -1,6 +1,8 @@
 import { Link } from "../src/routes";
+import withData from "../lib/apollo";
+import RaceList from "../components/RaceList";
 
-export default () => (
+export default withData(() => (
   <main>
     <header>
       <h1>Don't panic!</h1>
@@ -10,27 +12,13 @@ export default () => (
       <h2>Planets</h2>
       <ul>
         <li>
-          <Link href="/earth">Earth</Link>
+          <Link href="/earth">
+            <a>Earth</a>
+          </Link>
         </li>
       </ul>
       <h2>Races</h2>
-      <ul>
-        <li>
-          <Link route="race" params={{ name: "Humans" }}>
-            Humans
-          </Link>
-        </li>
-        <li>
-          <Link route="race" params={{ name: "Krikkiters" }}>
-            Krikkiters
-          </Link>
-        </li>
-        <li>
-          <Link route="race" params={{ name: "Vogons" }}>
-            Vogons
-          </Link>
-        </li>
-      </ul>
+      <RaceList />
     </nav>
   </main>
-);
+));
