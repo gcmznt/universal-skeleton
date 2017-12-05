@@ -13,17 +13,17 @@
   "license": "ISC",
   "babel": {
     "presets": ["next/babel"],
-    "plugins": ["transform-decorators-legacy"]
+    "plugins": ["styled-components", "transform-decorators-legacy"]
   },
   "dependencies": {
+    "babel-plugin-styled-components": "^1.3.0",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
     "express": "^4.16.2",
     "next": "^4.1.4",
     "next-apollo": "^1.0.4",
     "next-routes": "^1.1.0",
     "react": "^16.1.1",
-    "react-dom": "^16.1.1"
-  },
-  "devDependencies": {
-    "babel-plugin-transform-decorators-legacy": "^1.3.4"
+    "react-dom": "^16.1.1",
+    "styled-components": "^2.2.4"
   }
 }

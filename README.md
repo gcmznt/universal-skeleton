@@ -1,4 +1,4 @@
-# Universal tutorial
+# 👍 Hitchhiker's guide to the "Universal JS"
 
 ## Step 1: Next.js + React
 
@@ -187,16 +187,62 @@ export default () => (
         padding: 50px;
       }
       h1 {
-        color: #b90003;
-        font-family: "Arial black";
-        font-size: 120px;
-        font-weight: 900;
-        letter-spacing: -10px;
-        line-height: 0.9em;
-        text-transform: uppercase;
-        -webkit-text-stroke: 6px #e79705;
+        ...;
       }
     `}</style>
   </header>
 );
 ```
+
+### Step 5.1: Change CSS-in-JS tool
+
+You can use what you want like `styled-components`
+
+```shell
+$ npm i styled-components
+```
+
+```js
+import styled from "styled-components";
+
+const Cover = styled.header`
+  background-color: #000;
+  text-align: center;
+  padding: 50px;
+`;
+```
+
+Little setup for SSR in `pages/_document.js`
+
+```js
+import Document, { Head, Main, NextScript } from "next/document";
+import { ServerStyleSheet } from "styled-components";
+
+export default class MyDocument extends Document {
+  static getInitialProps({ renderPage }) {
+    const sheet = new ServerStyleSheet();
+    const page = renderPage(App => props =>
+      sheet.collectStyles(<App {...props} />)
+    );
+    const styleTags = sheet.getStyleElement();
+    return { ...page, styleTags };
+  }
+
+  render() {
+    return (
+      <html>
+        <Head>
+          <title>👍 Hitchhiker's guide to the "Universal JS"</title>
+          {this.props.styleTags}
+        </Head>
+        <body>
+          <Main />
+          <NextScript />
+        </body>
+      </html>
+    );
+  }
+}
+```
+
+a lot of examples here: https://github.com/zeit/next.js/tree/canary/examples
