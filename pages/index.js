@@ -6,6 +6,7 @@ import RaceList from "../components/RaceList";
 export default withData(() => (
   <main>
     <Cover />
+    <img src="/static/images/marvin.jpg" />
     <nav>
       <h1>Index</h1>
       <h2>Planets</h2>

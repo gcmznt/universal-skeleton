@@ -282,3 +282,7 @@ storiesOf("Cover", module).add("normal", () => <Cover />);
 ```shell
 $ npm run storybook
 ```
+
+## Step 7: Static files
+
+Just create a `/static` folder and it will be served
