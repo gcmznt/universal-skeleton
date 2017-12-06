@@ -20,7 +20,7 @@ Scripts in package.json
 
 Create the first page `pages/index.js`
 
-```js
+```jsx
 export default () => <div>Don't panic!</div>;
 ```
 
@@ -35,7 +35,7 @@ $ npm run dev
 Create `my-page.js` in `/pages/` folder to add pages server under `/my-page`
 url.
 
-```js
+```jsx
 export default () => <div>My custom page.</div>;
 ```
 
@@ -75,17 +75,17 @@ app.prepare().then(() => {
 
 Use links from our router
 
-```js
+```jsx
 import { Link } from "../src/routes";
 <Link route="race" params={{ name: "Humans" }}>
-  Humans
+  <a>Humans</a>
 </Link>;
 ```
 
 Create a target page `pages/race.js` and get info from url
 
-```html
-<h1>{props.url.query.name}</h1>
+```jsx
+<h1>{props.url.query.name}</h1>;
 ```
 
 Change npm script
@@ -106,13 +106,11 @@ Apollo config in `lib/apollo.js`
 import { withData } from "next-apollo";
 import { HttpLink } from "apollo-link-http";
 
-const config = {
+export default withData({
   link: new HttpLink({
     uri: "https://api.graph.cool/simple/v1/cj8d1a6hi053j0165fzbf5o4b"
   })
-};
-
-export default withData(config);
+});
 ```
 
 Create queries in `src/queries.js`
@@ -136,14 +134,14 @@ export const allRaces = gql`...`;
 
 Add data to pages
 
-```js
+```jsx
 import withData from "../lib/apollo";
 export default withData(() => <main>...</main>);
 ```
 
 Use data in components
 
-```js
+```jsx
 import { Component } from "react";
 import { graphql } from "react-apollo";
 import { race as raceQuery } from "../src/queries";
@@ -165,15 +163,15 @@ export default class Race extends Component {
 
 And use components
 
-```html
-<Race slug={props.url.query.name} />
+```jsx
+<Race slug={props.url.query.name} />;
 ```
 
 ## Step 5: Styles
 
 Default with `styled-jsx`
 
-```js
+```jsx
 export default () => (
   <header>
     <h1>
@@ -214,7 +212,7 @@ const Cover = styled.header`
 
 Little setup for SSR in `pages/_document.js`
 
-```js
+```jsx
 import Document, { Head, Main, NextScript } from "next/document";
 import { ServerStyleSheet } from "styled-components";
 
@@ -271,7 +269,7 @@ configure(() => {
 
 And create your stories like `stories/cover.js`
 
-```js
+```jsx
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import Cover from "../components/Cover";
